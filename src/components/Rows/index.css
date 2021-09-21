@@ -1,0 +1,25 @@
+.admin-tools-container {
+  display: flex;
+  align-items: center;
+}
+
+.tool-button {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.admin-tools {
+  font-size: 28px;
+  margin: 2px 6px;
+  padding: 2px;
+}
+
+.edit {
+  color: #262626;
+}
+
+.delete {
+  color: #ff0000;
+}
