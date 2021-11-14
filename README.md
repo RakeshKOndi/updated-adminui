@@ -1,206 +1,75 @@
-In this assignment let's build a **Github Popular Repos** by applying the concepts we have learned till now.
+In this assignment let's build a **Admin-UI** given by geekTrust.
 
-### Refer to images below:
+GUIDELINES:--
 
- <br/>
- <div style="text-align: center;">
-     <img src="https://assets.ccbp.in/frontend/content/react-js/github-popular-repos-output.gif" alt="github popular repos output" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
- </div>
- <br/>
+These are the requirements:
 
-**Error View**
+1. Column titles must stand out from the entries.
 
- <div style="text-align: center;">
-     <img src="https://assets.ccbp.in/frontend/content/react-js/github-popular-repos-error-view-output.gif" alt="github popular repos error view output" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
- </div>
- <br/>
- 
- #### Design Files
+2. There should be a search bar that can filter on any property.
 
-<details>
-<summary>Click to view the Design Files</summary>
+3. You should be able to edit or delete rows in place.(There is no expectation of persistence. Edit and delete are expected to only happen in memory.)
 
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Success](https://assets.ccbp.in/frontend/content/react-js/github-repos-success-sm-ouput.gif)
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Loading](https://assets.ccbp.in/frontend/content/react-js/github-repos-sm-loading-output.png)
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Error](https://assets.ccbp.in/frontend/content/react-js/github-repos-error-view-sm-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Success](https://assets.ccbp.in/frontend/content/react-js/github-repos-lg-success-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Loading](https://assets.ccbp.in/frontend/content/react-js/github-repos-lg-loading-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Error](https://assets.ccbp.in/frontend/content/react-js/github-repos-error-view-lg-output.png)
+4. You need to implement pagination: Each page contains 10 rows. Buttons at the bottom allow you to jump to any page including special buttons for first page, previous page, next page and last page. Pagination must update based on search/filtering. If there are 25 records for example that match a search query, then pagination buttons should only go till 3.
 
-</details>
+5. You should be able to select one or more rows. A selected row is highlighted with a grayish background color. Multiple selected rows can be deleted at once using the 'Delete Selected' button at the bottom left.
 
-### Project Set Up Instructions
+6. Checkbox on the top left is a shortcut to select or deselect all displayed rows. This should only apply to the ten rows displayed in the current page, and not all 50 rows.
 
-<details>
-<summary>Click to view the Set Up Instructions</summary>
+Users API:
 
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
+We provide you an Users API to list all the users and their properties.
 
-### Project Completion Instructions
+Note: The users are sorted by `id` field. There is no alphabetical sorting.
 
-<details>
-<summary>Click to view the Functionality to be added</summary>
+Endpoint: https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json
 
-#### Add Functionality
+Request Type: GET
 
-The app must have the following functionalities
+Sample Response:
 
-- When the page is opened initially,
+[ { "id": "1", "name": "Aaron Miles", "email": "aaron@mailinator.com", "role": "member" }, { "id": "2", "name": "Aishwarya Naik", "email": "aishwarya@mailinator.com", "role": "member" }, { "id": "3", "name": "Arvind Kumar", "email": "arvind@mailinator.com", "role": "admin" } ]
 
-  - _loader_ should be displayed
-  - Make HTTP GET request to the following URL `https://apis.ccbp.in/popular-repos?language=` with language filter as `ALL`
+Take a look at Geektrust help docs for guidance on how to write code that will companies interested in you. All the best!
 
-    Example URL to fetch data with `ALL` filter `https://apis.ccbp.in/popular-repos?language=ALL`
+You should read what we look for in your solution before you start coding.
 
-  - After fetching the data, the updated repositories list should be displayed
+Getting Started with Create React App This project was bootstrapped with Create React App.
 
-- When a language filter is selected
+Available Scripts In the project directory, you can run:
 
-  - _loader_ should be displayed
-  - An HTTP GET request should be made to the above-mentioned URL with the `id` of the selected language.
-  - After fetching the data, the updated repositories list should be displayed
+npm start Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
 
-- The _loader_ should be displayed when
-  - The page is opened at initial
-  - When a new language filter is clicked
-- The default selected language filter is `All`
-- The `GithubPopularRepos` component will consist of `languageFiltersData`
+The page will reload if you make edits. You will also see any lint errors in the console.
 
-  | Key                | Data Type       |
-  | ------------------ | --------------- |
-  | languageFilterData | Array\<object\> |
+npm test Launches the test runner in the interactive watch mode. See the section about running tests for more information.
 
-- The language filter object will have the following properties
+npm run build Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance.
 
-  | Key      | Data Type |
-  | -------- | --------- |
-  | id       | String    |
-  | language | String    |
+The build is minified and the filenames include the hashes. Your app is ready to be deployed!
 
-- The fetched data object will have the following properties
+See the section about deployment for more information.
 
-  | Key           | Data Type       |
-  | ------------- | --------------- |
-  | popular_repos | Array\<object\> |
+npm run eject Note: this is a one-way operation. Once you eject, you can’t go back!
 
-- Access the list of repositories from the fetched data using the key `popular_repos`
-- Each repository object will have the following properties
+If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
 
-  | Key          | Data Type |
-  | ------------ | --------- |
-  | id           | String    |
-  | avatar_url   | String    |
-  | name         | String    |
-  | stars_count  | Number    |
-  | forks_count  | Number    |
-  | issues_count | Number    |
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- The `LanguageFilterItem` component should receive the following props
+You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-  | Key      | Data Type |
-  | -------- | --------- |
-  | id       | String    |
-  | language | String    |
+Learn More You can learn more in the Create React App documentation.
 
-</details>
+To learn React, check out the React documentation.
 
-<details>
-<summary>Click to view the Implementation Files</summary>
+Code Splitting This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-- Your task is to complete the implementation of
-  - `src/components/GithubPopularRepos/index.js`
-  - `src/components/GithubPopularRepos/index.css`
-  - `src/components/LanguageFilterItem/index.js`
-  - `src/components/LanguageFilterItem/index.css`
-  - `src/components/RepositoryItem/index.js`
-  - `src/components/RepositoryItem/index.css`
-  </details>
+Analyzing the Bundle Size This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-<details>
-<summary>Click to view the Components Structure</summary>
+Making a Progressive Web App This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-#### Components Structure
+Advanced Configuration This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-<br/>
-<div style="text-align: center;">
-    <img src="https://assets.ccbp.in/frontend/content/react-js/github-popular-repos-component-breakdown-structure.png" alt="home-component-structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
-</div>
-<br/>
+Deployment This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-</details>
-
-### Quick Tip
-
-- To show the animated loader, we need to import the `Loader` component as
-  - `import Loader from 'react-loader-spinner'`
-- In order to render the given animated loader, use **ThreeDots** for `type` attribute & also use **#0284c7** for `color` attribute of `Loader` component
-
-  ```
-  <Loader type="ThreeDots" color="#0284c7" height={80} width={80} />
-  ```
-
-<br/>
-
-> #### Important Note
->
-> **The following HTML attributes are required for the HTML button and image elements for the tests to pass**
->
-> - Wrap the Loader component with an HTML container element and add the `testid` attribute value as `loader` to it
->
->   ```
->   <div testid="loader">
->      <Loader type="ThreeDots" color="#0284c7" height={80} width={80} />
->   </div>
->   ```
-
-### Resources
-
-<details>
-<summary>Data fetch URLs</summary>
-
-#### Data Fetch URLs
-
-- `https://apis.ccbp.in/popular-repos?language=`
-
-</details>
-
-<details>
-<summary>Image URLs</summary>
-
-#### Images
-
-- [https://assets.ccbp.in/frontend/react-js/stars-count-img.png](https://assets.ccbp.in/frontend/react-js/stars-count-img.png) - alt text should be **stars**
-- [https://assets.ccbp.in/frontend/react-js/forks-count-img.png](https://assets.ccbp.in/frontend/react-js/forks-count-img.png) - alt text should be **forks**
-- [https://assets.ccbp.in/frontend/react-js/issues-count-img.png](https://assets.ccbp.in/frontend/react-js/issues-count-img.png) - alt text should be **open-issues**
-- [https://assets.ccbp.in/frontend/react-js/api-failure-view.png](https://assets.ccbp.in/frontend/react-js/api-failure-view.png) - alt text should be **failure view**
-
-</details>
-
-<details>
-<summary>Colors</summary>
-
-#### Colors
-
-<div style="background-color: #0284c7; width: 150px; padding: 10px; color: black">Hex: #0284c7</div>
-<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
-<div style="background-color: #0f172a; width: 150px; padding: 10px; color: white">Hex: #0f172a</div>
-<div style="background-color: #f8f8ff; width: 150px; padding: 10px; color: black">Hex: #f8f8ff</div>
-<div style="background-color: #e73959; width: 150px; padding: 10px; color: white">Hex: #e73959</div>
-<div style="background-color: #1e293b; width: 150px; padding: 10px; color: white">Hex: #1e293b</div>
-
-<br/>
-</details>
-
-#### Font-families
-
-- Roboto
-- Lobster
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - Don't change the component folder names as those are the files being imported into the tests.
-> - **Do not remove the pre-filled code**
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
+npm run build fails to minify This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

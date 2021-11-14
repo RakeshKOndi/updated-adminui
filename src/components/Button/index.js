@@ -2,15 +2,21 @@
 import './index.css'
 
 const Button = props => {
-  const {page} = props
+  const {page, setPerPageUsers, isActive} = props
+
+  const buttonSelected = isActive ? 'selected-button' : ''
 
   const renderPageButtons = () => {
-    console.log()
+    setPerPageUsers(page)
   }
 
   return (
     <li>
-      <button type="button" className="button">
+      <button
+        type="button"
+        onClick={renderPageButtons}
+        className={`button ${buttonSelected}`}
+      >
         {page}
       </button>
     </li>
